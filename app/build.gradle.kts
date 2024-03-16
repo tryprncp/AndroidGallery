@@ -182,9 +182,6 @@ dependencies {
     // Datastore Preferences
     implementation(libs.datastore.prefs)
 
-    // Fuzzy Search
-    implementation(libs.fuzzywuzzy)
-
     // GPU Image
     implementation(libs.gpuimage)
 
