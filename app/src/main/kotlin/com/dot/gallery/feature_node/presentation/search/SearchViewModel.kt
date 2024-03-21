@@ -86,12 +86,30 @@ class SearchViewModel @Inject constructor(
 
     private fun loadYoloModel(): Module {
         try {
-            val model = LiteModuleLoader.load("yolov5s.torchscript.ptl".assetFilePath(context))
+            val model = LiteModuleLoader.load("yolov5nbest.torchscript.ptl".assetFilePath(context))
             PrePostProcessor.mClasses = loadClasses().toTypedArray()
             return model
         } catch (e: Exception) {
             Log.w("SearchViewModel", "Error loading YOLOv5 model:", e)
             throw IllegalStateException("Failed to load YOLOv5 model", e)
+        }
+    }
+
+    private fun loadClasses(): List<String> {
+        try {
+            // Assuming classes.txt is a plain text file with one class per line
+            val inputStream = context.assets.open("classes.txt")
+            val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+            val classes = mutableListOf<String>()
+            var line: String?
+            while (bufferedReader.readLine().also { line = it } != null) {
+                classes.add(line.orEmpty())
+            }
+            bufferedReader.close()
+            return classes
+        } catch (e: IOException) {
+            Log.e("SearchViewModel", "Error loading classes.txt:", e)
+            throw IllegalStateException("Failed to load classes.txt", e)
         }
     }
 
@@ -138,29 +156,10 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    private fun loadClasses(): List<String> {
-        try {
-            // Assuming classes.txt is a plain text file with one class per line
-            val inputStream = context.assets.open("classes.txt")
-            val bufferedReader = BufferedReader(InputStreamReader(inputStream))
-            val classes = mutableListOf<String>()
-            var line: String?
-            while (bufferedReader.readLine().also { line = it } != null) {
-                classes.add(line.orEmpty())
-            }
-            bufferedReader.close()
-            return classes
-        } catch (e: IOException) {
-            Log.e("SearchViewModel", "Error loading classes.txt:", e)
-            throw IllegalStateException("Failed to load classes.txt", e)
-        }
-    }
-
     private fun getIndexOfLabel(label: String, classes: List<String>): Int {
         // Check if the label matches any of the classes
         return classes.indexOf(label)
     }
-
     
     private fun loadBitmap(path: String): Bitmap {
         val options = BitmapFactory.Options()
