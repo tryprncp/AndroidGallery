@@ -106,8 +106,8 @@ android {
 }
 
 dependencies {
-    implementation("org.pytorch:pytorch_android_lite:1.10.0")
-    implementation("org.pytorch:pytorch_android_torchvision_lite:1.10.0")
+    implementation("org.pytorch:pytorch_android_lite:2.1.0")
+    implementation("org.pytorch:pytorch_android_torchvision_lite:2.1.0")
 
     runtimeOnly(libs.androidx.profileinstaller)
     implementation(project(":libs:cropper"))
