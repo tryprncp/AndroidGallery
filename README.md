@@ -1,7 +1,7 @@
 # Gallery
 > An Android Gallery app built with Jetpack Compose.
 > 
-> The goal of this forked project is to implement YOLOv8 model in a search algorithm. FOSS
+> The goal of this project is to implement an NLP and YOLO model into Android Gallery's search mechanism to enable context-based searching of images. FOSS
 
 ![Downloads](https://img.shields.io/github/downloads/IacobIonut01/Gallery/total?color=%23247EE0&label=Downloads)
 [![CI](https://github.com/IacobIonut01/Gallery/actions/workflows/nightly.yml/badge.svg?branch=main)](https://github.com/IacobIonut01/Gallery/actions/workflows/nightly.yml)
@@ -26,11 +26,6 @@
     src='./screenshots/items/get-it-on-github.png'
     height="80" />](https://github.com/IacobIonut01/Gallery/releases/latest)
 
-## Support
-- Translate the project using the link from above
-- Donations:
-    - Use the links on the right side of the repo (Sponsor me)
-    - More options available in-app (Settings -> Donate)
 ## Frequent Questions
 - Why Google Play version is 'Paid'?
     - It's just another way to support the project while getting back autmatic updates via Google Play
